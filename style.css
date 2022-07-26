@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+body {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 20px;
+    text-align: center;
+    background-image: url('');
+    background-size: cover;
+}
+
+h1 { 
+    font-size: 2em; 
+    font-weight: bold; 
+    margin-bottom: 0.5em; 
+    margin-top: 1em;
+}
+
+.container {
+    width: 400px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+}
+
+
+.grid {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    /*height: 300px;
+    width: 400px;*/
+    align-items: center;
+}
+
+.spacewelcomemsg {
+    font-size: 1.6em;
+    background: linear-gradient(to bottom, rgb(230, 104, 230), rgb(176, 114, 228));
+    color: white;
+    text-shadow: 1px 1px 10px black;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    height: 300px;
+    width: 400px;
+}
+
+.welcomemsg {
+    margin-top: 3.5em;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+#btn {
+    font-size: 0.7em;
+    color: white;
+    text-shadow: 1px 1px 3px black;
+    text-transform: uppercase;
+    background: rgb(176, 114, 228);
+    padding: 0.5em;
+    margin-top: 1.5em;
+}
+
+#btn:hover {
+    box-shadow: 1px 1px 5px black;
+    transition-duration: 0.2s;
+}
+
+.score {
+    font-size: 1.2em;
+    margin-top: 2em;
+}
+
+.footer {
+    font-size: 14px;
+    margin-top: 3em;
+}
