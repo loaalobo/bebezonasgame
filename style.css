@@ -5,8 +5,8 @@ body {
     font-family: 'Patrick Hand', cursive;
     font-size: 20px;
     text-align: center;
-    background-image: url('');
     background-size: cover;
+    background-image: url('https://images.pexels.com/photos/6913376/pexels-photo-6913376.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
 }
 
 h1 { 
@@ -17,52 +17,56 @@ h1 {
 }
 
 .container {
-    width: 400px;
-    height: 300px;
+    width: 500px;
+    height: 400px;
     margin-left: auto;
     margin-right: auto;
     border: 1px solid black;
 }
 
-
 .grid {
     margin: 0;
     display: flex;
     flex-wrap: wrap;
-    /*height: 300px;
-    width: 400px;*/
     align-items: center;
 }
 
 .spacewelcomemsg {
-    font-size: 1.6em;
-    background: linear-gradient(to bottom, rgb(230, 104, 230), rgb(176, 114, 228));
+    font-size: 1.7em;
+    background: linear-gradient(to bottom, #819185, #C6B6B6);
+    background-size: cover;
     color: white;
-    text-shadow: 1px 1px 10px black;
+    text-shadow: 2px 2px 3px black;
     height: 100%;
     width: 100%;
     margin: 0;
-    height: 300px;
-    width: 400px;
+    height: 400px;
+    width: 500px;
 }
 
 .welcomemsg {
-    margin-top: 3.5em;
+    margin-top: 4em;
+}
+
+.welcomemsg2 {
+    margin-top: -2em;
 }
 
 img {
-    width: 100px;
-    height: 100px;
+    width: 125px;
+    height: 133px;
 }
 
 #btn {
-    font-size: 0.7em;
+    font-family: 'Patrick Hand', cursive;
+    font-size: 0.8em;
     color: white;
-    text-shadow: 1px 1px 3px black;
+    text-shadow: 2px 2px 3px black;
     text-transform: uppercase;
-    background: rgb(176, 114, 228);
-    padding: 0.5em;
+    background: #C6B6B6;
+    padding: 0.8em;
     margin-top: 1.5em;
+    border: 1px solid black;
 }
 
 #btn:hover {
