@@ -73,10 +73,16 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
         grid.appendChild(spacewelcomemsg);
         spacewelcomemsg.appendChild(welcomemsg); 
         
-        const welcomemsg2 = document.createElement('h6');
+        const welcomemsg2 = document.createElement('p');
         welcomemsg2.classList.add('welcomemsg2');
-        welcomemsg2.textContent = "O Jogo Da Memória da Elis";
+        welcomemsg2.textContent = "O Jogo Da Memória da";
         spacewelcomemsg.appendChild(welcomemsg2);
+
+        const welcomemsg3 = document.createElement('p');
+        welcomemsg3.classList.add('welcomemsg3');
+        welcomemsg3.textContent = "Elis";
+        welcomemsg3.setAttribute('style', "font-family: 'Ms Madi', cursive;")
+        spacewelcomemsg.appendChild(welcomemsg3);
     }
     welcomemsg();
 
