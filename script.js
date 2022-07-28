@@ -4,51 +4,51 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
     const cardArray = [ 
         {
             name: 'elis1',
-            img: 'img/img1.png'
+            img: 'img/img1.png',
         },
         {
             name: 'elis1',
-            img: 'img/img1.png'
+            img: 'img/img1.png',
         },
         {
             name: 'elis2',
-            img: 'img/img2.png'
+            img: 'img/img2.png',
         },
         {
             name: 'elis2',
-            img: 'img/img2.png'
+            img: 'img/img2.png',
         },
         {
             name: 'elis3',
-            img: 'img/img3.png'
+            img: 'img/img3.png',
         },
         {
             name: 'elis3',
-            img: 'img/img3.png'
+            img: 'img/img3.png',
         },
         {
             name: 'elis4',
-            img: 'img/img4.png'
+            img: 'img/img4.png',
         },
         {
             name: 'elis4',
-            img: 'img/img4.png'
+            img: 'img/img4.png',
         },
         {
             name: 'elis5',
-            img: 'img/img5.png'
+            img: 'img/img5.png',
         },
         {
             name: 'elis5',
-            img: 'img/img5.png'
+            img: 'img/img5.png',
         },
         {
             name: 'elis6',
-            img: 'img/img6.png'
+            img: 'img/img6.png',
         },
         {
             name: 'elis6',
-            img: 'img/img6.png'
+            img: 'img/img6.png',
         },
     ];
 
@@ -67,11 +67,6 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
         const spacewelcomemsg = document.createElement('div');
         spacewelcomemsg.classList.add('spacewelcomemsg');
         grid.appendChild(spacewelcomemsg);
-        
-        /*const welcomemsg = document.createElement('h4');
-        welcomemsg.classList.add('welcomemsg');
-        welcomemsg.textContent = "Bebezona's Memory Game";
-        spacewelcomemsg.appendChild(welcomemsg);*/
 
         const welcomemsg2 = document.createElement('p');
         welcomemsg2.classList.add('welcomemsg2');
@@ -89,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
     const btn = document.querySelector('.btn');
     btn.addEventListener('click', () => {
         grid.replaceChildren();
-        createBoard(); // chama a função que cria o tabuleiro do jogo (gostaria de criar um botão 'iniciar jogo')
+        createBoard(); // chama a função que cria o tabuleiro do jogo 
     })
 
     // cria o "tabuleiro" do jogo: para cada um dos 12 objetos no array de cartas, será criada uma imagem e setado um endereço para ela (img/img7.jpeg). Também será setado um atributo personalizado chamado 'id' com o valor de 0 a 11 (já que são 12 objetos no total). Por fim, adiciona um evento de click e chama a função flipCard para cada objeto. O 'grid.appendChild(card)' é responsável por adicionar a img criada ao espaço reservado no html, o qual acessamos através da variável 'const grid'
@@ -107,35 +102,56 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
     // vira a carta
     function flipCard() {
         let cardId = this.getAttribute('data-id'); // acessa o id de cada um dos objetos do array de cartas
+        //caso uma carta já tenha sido escolhida, impede que ela seja clicada novamente
+        if (cardsChosen.length === 1) {
+            if (cardsChosenId[0] === cardId) {
+                return alert('Escolha uma carta diferente para comparar!');
+            } 
+            alert('Será que vai dar match?')
+        }
+
         cardsChosen.push(cardArray[cardId].name); // salva o nome do objeto escolhido (carta clicada) na lista de escolhidas
         cardsChosenId.push(cardId); // salva o id do objeto escolhido na lista de 'id das cartas escolhidas'
         this.setAttribute('src', cardArray[cardId].img) // seta, na carta que foi clicada, o endereço da imagem que estiver associada ao id 
         if (cardsChosen.length === 2) { // quando a lista de cartas escolhidas contiver dois objetos vai: 
-            setTimeout(checkForMatch, 500); // chamar a função que checa a combinação
-        }
-    }
+            setTimeout(checkForMatch, 1000); // chamar a função que checa a combinação
+        } 
 
+        // //impede que o usuário vire mais de duas cartas por rodada
+        // if (cardsChosen.length > 2) {
+        //     return alert('Você só pode escolher duas cartas por vez!');
+        // }
+        
+    }
+    
     // checa as combinações
     function checkForMatch() {
         let cards = document.querySelectorAll('img');
         const optionOneId = cardsChosenId[0];
         const optionTwoId = cardsChosenId[1];
         if (cardsChosen[0] === cardsChosen[1]) {
-            alert('Você encontrou um par!');
+            alert('Obaaaa... que legal! Você acertou!');
             cards[optionOneId].setAttribute('src', 'img/img_acertou.jpg');
             cards[optionTwoId].setAttribute('src', 'img/img_acertou.jpg');
             cardsWon.push(cardsChosen);
         } else {
             cards[optionOneId].setAttribute('src', 'img/img_jogar_frozen.png');
             cards[optionTwoId].setAttribute('src', 'img/img_jogar_frozen.png');
-            alert('Tente de novo!');
+            alert('Ahhhh... que pena! Tente outra vez!');
+
         }
+
         // a cada rodada, independentemente se acertou ou não a combinação, vai:
         cardsChosen = []; // esvaziar a lista que armazenava as duas cartas escolhidas
         cardsChosenId = []; // esvaziar a lista com os nº. de id das duas cartas escolhidas
         resultDisplay.textContent = cardsWon.length; // atualiza o número de acertos
         if (cardsWon.length === cardArray.length/2) { // quando alcançar 6 pontos vai:
-            resultDisplay.textContent = 'Parabéns! Você venceu!' // exibir mensagem de 'parabéns'
+            msgFinal();
         }
+    }
+
+    function msgFinal() {
+        resultDisplay.setAttribute('style', 'font-size: 1em; color: white; text-shadow: 2px 2px 3px black;')
+        resultDisplay.textContent = 'Parabéns! Você encontrou todos os pares!' // exibir mensagem de 'parabéns'
     }
 })
