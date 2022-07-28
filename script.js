@@ -68,15 +68,19 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
         spacewelcomemsg.classList.add('spacewelcomemsg');
         grid.appendChild(spacewelcomemsg);
 
+        const welcomemsg1 = document.createElement('p');
+        welcomemsg1.classList.add('welcomemsg1');
+        welcomemsg1.textContent = "Bem-vinda";
+        spacewelcomemsg.appendChild(welcomemsg1);
+
         const welcomemsg2 = document.createElement('p');
         welcomemsg2.classList.add('welcomemsg2');
-        welcomemsg2.textContent = "Jogo Da Memória";
+        welcomemsg2.textContent = "ao seu";
         spacewelcomemsg.appendChild(welcomemsg2);
 
         const welcomemsg3 = document.createElement('p');
         welcomemsg3.classList.add('welcomemsg3');
-        welcomemsg3.textContent = "Elis";
-        welcomemsg3.setAttribute('style', "font-family: 'Ms Madi', cursive;")
+        welcomemsg3.textContent = "Jogo da Memória";
         spacewelcomemsg.appendChild(welcomemsg3);
     }
     welcomemsg();
@@ -110,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
             //impede que o usuário vire mais de duas cartas por rodada
             alert('Será que vai dar match?')
         }
-
         cardsChosen.push(cardArray[cardId].name); // salva o nome do objeto escolhido (carta clicada) na lista de escolhidas
         cardsChosenId.push(cardId); // salva o id do objeto escolhido na lista de 'id das cartas escolhidas'
         this.setAttribute('src', cardArray[cardId].img) // seta, na carta que foi clicada, o endereço da imagem que estiver associada ao id 

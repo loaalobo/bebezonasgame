@@ -10,9 +10,11 @@ body {
 }
 
 h1 { 
-    font-size: 2em; 
-    margin-bottom: 0.5em; 
-    margin-top: 1em;
+    font-family: 'Ms Madi', cursive;
+    font-size: 2.8em; 
+    font-weight: lighter;
+    margin-bottom: 0.3em; 
+    margin-top: 1em; 
     color: white;
     text-shadow: 2px 2px 3px black;
 }
@@ -35,7 +37,6 @@ h1 {
 .spacewelcomemsg {
     font-size: 1.7em;
     background: linear-gradient(to bottom, #ffffffd2, #143b89d7);
-    background-size: cover;
     height: 100%;
     width: 100%;
     margin: 0;
@@ -43,21 +44,22 @@ h1 {
     width: 400px;
 }
 
-/* .welcomemsg {
-    margin-top: 2.5em;
-} */
-
-.welcomemsg2 {
-    margin-top: 4em;
+.welcomemsg1 {
+    margin-top: 3em;
     font-size: 0.7em;
     color: black;
 }
 
+.welcomemsg2 {
+    margin-top: -1.5em;
+    font-size: 0.6em;
+}
+
 .welcomemsg3 {
     margin-top: -0.5em;
-    font-size: 1.9em;
+    font-size: 1em;
     color: white;
-    text-shadow: 2px 2px 3px black;
+    text-shadow: 2px 2px 3px black; 
 }
 
 img {
