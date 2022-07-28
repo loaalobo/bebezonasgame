@@ -66,16 +66,16 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
     function welcomemsg() {
         const spacewelcomemsg = document.createElement('div');
         spacewelcomemsg.classList.add('spacewelcomemsg');
-
-        const welcomemsg = document.createElement('h4');
+        grid.appendChild(spacewelcomemsg);
+        
+        /*const welcomemsg = document.createElement('h4');
         welcomemsg.classList.add('welcomemsg');
         welcomemsg.textContent = "Bebezona's Memory Game";
-        grid.appendChild(spacewelcomemsg);
-        spacewelcomemsg.appendChild(welcomemsg); 
-        
+        spacewelcomemsg.appendChild(welcomemsg);*/
+
         const welcomemsg2 = document.createElement('p');
         welcomemsg2.classList.add('welcomemsg2');
-        welcomemsg2.textContent = "O Jogo Da Memória da";
+        welcomemsg2.textContent = "Jogo Da Memória";
         spacewelcomemsg.appendChild(welcomemsg2);
 
         const welcomemsg3 = document.createElement('p');
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
     function createBoard() {
         for (i in cardArray) { //length: 12
             const card = document.createElement('img');
-            card.setAttribute('src', 'img/img_jogar.png');
+            card.setAttribute('src', 'img/img_jogar_frozen.png');
             card.setAttribute('style', 'box-shadow: 1px 1px 5px black')
             card.setAttribute('data-id', i);
             card.addEventListener('click', flipCard);
@@ -122,12 +122,12 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
         const optionTwoId = cardsChosenId[1];
         if (cardsChosen[0] === cardsChosen[1]) {
             alert('Você encontrou um par!');
-            cards[optionOneId].setAttribute('src', 'img/flor1.png');
-            cards[optionTwoId].setAttribute('src', 'img/flor1.png');
+            cards[optionOneId].setAttribute('src', 'img/img_acertou.jpg');
+            cards[optionTwoId].setAttribute('src', 'img/img_acertou.jpg');
             cardsWon.push(cardsChosen);
         } else {
-            cards[optionOneId].setAttribute('src', 'img/img_jogar.png');
-            cards[optionTwoId].setAttribute('src', 'img/img_jogar.png');
+            cards[optionOneId].setAttribute('src', 'img/img_jogar_frozen.png');
+            cards[optionTwoId].setAttribute('src', 'img/img_jogar_frozen.png');
             alert('Tente de novo!');
         }
         // a cada rodada, independentemente se acertou ou não a combinação, vai:
