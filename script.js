@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
             if (cardsChosenId[0] === cardId) {
                 return alert('Escolha uma carta diferente para comparar!');
             } 
+            //impede que o usuário vire mais de duas cartas por rodada
             alert('Será que vai dar match?')
         }
 
@@ -116,12 +117,6 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
         if (cardsChosen.length === 2) { // quando a lista de cartas escolhidas contiver dois objetos vai: 
             setTimeout(checkForMatch, 1000); // chamar a função que checa a combinação
         } 
-
-        // //impede que o usuário vire mais de duas cartas por rodada
-        // if (cardsChosen.length > 2) {
-        //     return alert('Você só pode escolher duas cartas por vez!');
-        // }
-        
     }
     
     // checa as combinações
@@ -144,14 +139,14 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
         // a cada rodada, independentemente se acertou ou não a combinação, vai:
         cardsChosen = []; // esvaziar a lista que armazenava as duas cartas escolhidas
         cardsChosenId = []; // esvaziar a lista com os nº. de id das duas cartas escolhidas
-        resultDisplay.textContent = cardsWon.length; // atualiza o número de acertos
+        resultDisplay.textContent = cardsWon.length + " pontos"; // atualiza o número de acertos
         if (cardsWon.length === cardArray.length/2) { // quando alcançar 6 pontos vai:
             msgFinal();
         }
     }
 
     function msgFinal() {
-        resultDisplay.setAttribute('style', 'font-size: 1em; color: white; text-shadow: 2px 2px 3px black;')
+        resultDisplay.setAttribute('style', 'font-size: 1em; color: white; text-shadow: 2px 2px 3px black; transition-duration: 0.2s;')
         resultDisplay.textContent = 'Parabéns! Você encontrou todos os pares!' // exibir mensagem de 'parabéns'
     }
 })
