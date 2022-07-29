@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
     let cardsChosen = []; // cria uma lista para armazenar as 2 cartas escolhidas por rodada
     let cardsChosenId = []; // cria uma lista para armazenar os ids das 2 cartas escolhidas por rodada
     let cardsWon = []; // cria uma lista com as cartas que já deram match (combinadas corretamente)
+    let rounds = 0; // cria um contador para o número de rodadas 
 
     function welcomemsg() {
         const spacewelcomemsg = document.createElement('div');
@@ -112,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
                 return alert('Escolha uma carta diferente para comparar!');
             } 
             //impede que o usuário vire mais de duas cartas por rodada
-            alert('Será que vai dar match?')
+            alert('Será que você encontrou o par???')
         }
         cardsChosen.push(cardArray[cardId].name); // salva o nome do objeto escolhido (carta clicada) na lista de escolhidas
         cardsChosenId.push(cardId); // salva o id do objeto escolhido na lista de 'id das cartas escolhidas'
@@ -142,14 +143,36 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
         // a cada rodada, independentemente se acertou ou não a combinação, vai:
         cardsChosen = []; // esvaziar a lista que armazenava as duas cartas escolhidas
         cardsChosenId = []; // esvaziar a lista com os nº. de id das duas cartas escolhidas
-        resultDisplay.textContent = cardsWon.length + " pontos"; // atualiza o número de acertos
+        
+        if (cardsWon.length == 1) {
+            rounds += 1;
+            resultDisplay.textContent = "Tentativa nº " + rounds + " = " + cardsWon.length + " ponto"; // atualiza o número de rodadas e de acertos
+        } else {
+            rounds += 1;
+            resultDisplay.textContent = "Tentativa nº " + rounds + " = " + cardsWon.length + " pontos"; // atualiza o número de rodadas e de acertos
+        }
+        
         if (cardsWon.length === cardArray.length/2) { // quando alcançar 6 pontos vai:
             msgFinal();
         }
     }
 
     function msgFinal() {
-        resultDisplay.setAttribute('style', 'font-size: 1em; color: white; text-shadow: 2px 2px 3px black; transition-duration: 0.2s;')
+        resultDisplay.setAttribute('style', 'font-size: 1em; color: white; background: #6D98CB; padding: 0.2em; border: 1px solid black; text-shadow: 2px 2px 3px black; transition-duration: 0.2s;') 
         resultDisplay.textContent = 'Parabéns! Você encontrou todos os pares!' // exibir mensagem de 'parabéns'
+        setTimeout(renomearBotao, 4000);
+    }
+
+    function renomearBotao() {
+        const btn = document.getElementById('btn');
+        btn.textContent = 'Nova Partida';
+        btn.addEventListener('click', deletarMsgFinal());
+    }
+
+    function deletarMsgFinal() {
+        const msgFinal = document.querySelector('.score');
+        if (msgFinal.parentNode) {
+            msgFinal.parentNode.removeChild(msgFinal);
+        }
     }
 })
