@@ -4,51 +4,51 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
     const cardArray = [ 
         {
             name: 'elis1',
-            img: 'img/img1.png',
+            img: 'img/cartas/img_1.jpeg',
         },
         {
             name: 'elis1',
-            img: 'img/img1.png',
+            img: 'img/cartas/img_1.jpeg',
         },
         {
             name: 'elis2',
-            img: 'img/img2.png',
+            img: 'img/cartas/img_2.jpeg',
         },
         {
             name: 'elis2',
-            img: 'img/img2.png',
+            img: 'img/cartas/img_2.jpeg',
         },
         {
             name: 'elis3',
-            img: 'img/img3.png',
+            img: 'img/cartas/img_3.jpeg',
         },
         {
             name: 'elis3',
-            img: 'img/img3.png',
+            img: 'img/cartas/img_3.jpeg',
         },
         {
             name: 'elis4',
-            img: 'img/img4.png',
+            img: 'img/cartas/img_4.jpeg',
         },
         {
             name: 'elis4',
-            img: 'img/img4.png',
+            img: 'img/cartas/img_4.jpeg',
         },
         {
             name: 'elis5',
-            img: 'img/img5.png',
+            img: 'img/cartas/img_5.jpeg',
         },
         {
             name: 'elis5',
-            img: 'img/img5.png',
+            img: 'img/cartas/img_5.jpeg',
         },
         {
             name: 'elis6',
-            img: 'img/img6.png',
+            img: 'img/cartas/img_6.jpeg',
         },
         {
             name: 'elis6',
-            img: 'img/img6.png',
+            img: 'img/cartas/img_6.jpeg',
         },
     ];
 
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
     function createBoard() {
         for (i in cardArray) { //length: 12
             const card = document.createElement('img');
-            card.setAttribute('src', 'img/img_jogar_frozen.png');
+            card.setAttribute('src', 'img/tema/img_jogar_frozen.png');
             card.setAttribute('style', 'box-shadow: 1px 1px 5px black')
             card.setAttribute('data-id', i);
             card.addEventListener('click', flipCard);
@@ -130,12 +130,12 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
         const optionTwoId = cardsChosenId[1];
         if (cardsChosen[0] === cardsChosen[1]) {
             alert('Obaaaa... que legal! Você acertou!');
-            cards[optionOneId].setAttribute('src', 'img/img_acertou.jpg');
-            cards[optionTwoId].setAttribute('src', 'img/img_acertou.jpg');
+            cards[optionOneId].setAttribute('src', 'img/tema/img_acertou.jpg');
+            cards[optionTwoId].setAttribute('src', 'img/tema/img_acertou.jpg');
             cardsWon.push(cardsChosen);
         } else {
-            cards[optionOneId].setAttribute('src', 'img/img_jogar_frozen.png');
-            cards[optionTwoId].setAttribute('src', 'img/img_jogar_frozen.png');
+            cards[optionOneId].setAttribute('src', 'img/tema/img_jogar_frozen.png');
+            cards[optionTwoId].setAttribute('src', 'img/tema/img_jogar_frozen.png');
             alert('Ahhhh... que pena! Tente outra vez!');
 
         }
