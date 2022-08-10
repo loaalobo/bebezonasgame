@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
     let cardsChosen = []; // cria uma lista para armazenar as 2 cartas escolhidas por rodada
     let cardsChosenId = []; // cria uma lista para armazenar os ids das 2 cartas escolhidas por rodada
     let cardsWon = []; // cria uma lista com as cartas que já deram match (combinadas corretamente)
-    let rounds = 0; // cria um contador para o número de rodadas 
+    let rounds = 0; // cria um contador para o número de rodadas   
 
     function welcomemsg() {
         const spacewelcomemsg = document.createElement('div');
@@ -104,40 +104,62 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
         }
     }
 
+    function clearMsg() {
+        document.getElementById('msg_alertas').innerHTML=" ";
+    }
+
+    function showMsg(msg) {
+        clearMsg();
+        let e_msg = document.createElement('p');
+        let t_msg = document.createTextNode(msg);
+        e_msg.classList.add('showMsg');
+        e_msg.appendChild(t_msg);   
+
+        let a_msg = document.getElementById('msg_alertas');
+        a_msg.appendChild(e_msg)
+    }
+
+
     // vira a carta
     function flipCard() {
+        clearMsg();
         let cardId = this.getAttribute('data-id'); // acessa o id de cada um dos objetos do array de cartas
-        //caso uma carta já tenha sido escolhida, impede que ela seja clicada novamente
+        //caso uma carta já tenha sido escolhida, pede ao usuário que escolha uma diferente
         if (cardsChosen.length === 1) {
             if (cardsChosenId[0] === cardId) {
-                return alert('Escolha uma carta diferente para comparar!');
-            } 
-            //impede que o usuário vire mais de duas cartas por rodada
-            alert('Será que você encontrou o par???')
+                return showMsg('Escolha outra carta!')
+            }   
+            let grid = document.getElementById('grid') 
+            grid.classList.add('unclick')
         }
         cardsChosen.push(cardArray[cardId].name); // salva o nome do objeto escolhido (carta clicada) na lista de escolhidas
         cardsChosenId.push(cardId); // salva o id do objeto escolhido na lista de 'id das cartas escolhidas'
+
+        // Nesse ponto, PRECISO SALVAR AS CARTAS NÃO ESCOLHIDAS EM UMA VARIÁVEL (unchosenCards) PARA DESABILITAR O CLICK NELAS ATÉ QUE O MATCH SEJA VERIFICADO. APÓS O RESULTADO SER MOSTRADO NA TELA (SE ACERTOU OU NÃO), HABILITO O CLICK NOVAMENTE.
+
         this.setAttribute('src', cardArray[cardId].img) // seta, na carta que foi clicada, o endereço da imagem que estiver associada ao id 
+
         if (cardsChosen.length === 2) { // quando a lista de cartas escolhidas contiver dois objetos vai: 
-            setTimeout(checkForMatch, 1000); // chamar a função que checa a combinação
+            setTimeout(checkForMatch, 2000); // chamar a função que checa a combinação 
         } 
     }
-    
+
     // checa as combinações
     function checkForMatch() {
         let cards = document.querySelectorAll('img');
         const optionOneId = cardsChosenId[0];
         const optionTwoId = cardsChosenId[1];
         if (cardsChosen[0] === cardsChosen[1]) {
-            alert('Obaaaa... que legal! Você acertou!');
+            clearMsg();
+            showMsg('Você acertou!');
             cards[optionOneId].setAttribute('src', 'img/tema/img_acertou.jpg');
             cards[optionTwoId].setAttribute('src', 'img/tema/img_acertou.jpg');
             cardsWon.push(cardsChosen);
         } else {
             cards[optionOneId].setAttribute('src', 'img/tema/img_jogar_frozen.png');
             cards[optionTwoId].setAttribute('src', 'img/tema/img_jogar_frozen.png');
-            alert('Ahhhh... que pena! Tente outra vez!');
-
+            clearMsg();
+            showMsg('Tente outra vez!')
         }
 
         // a cada rodada, independentemente se acertou ou não a combinação, vai:
@@ -155,17 +177,21 @@ document.addEventListener('DOMContentLoaded', () => { // o evento DOMContentLoad
         if (cardsWon.length === cardArray.length/2) { // quando alcançar 6 pontos vai:
             msgFinal();
         }
+        
+        grid.classList.remove('unclick')
     }
 
     function msgFinal() {
+        clearMsg();
         resultDisplay.setAttribute('style', 'font-size: 1em; color: white; background: #6D98CB; padding: 0.2em; border: 1px solid black; text-shadow: 2px 2px 3px black; transition-duration: 0.2s;') 
-        resultDisplay.textContent = 'Parabéns! Você encontrou todos os pares!' // exibir mensagem de 'parabéns'
+        resultDisplay.textContent = 'Parabéns! Você venceu!' // exibir mensagem de 'parabéns'
         setTimeout(renomearBotao, 4000);
     }
 
     function renomearBotao() {
         const btn = document.getElementById('btn');
-        btn.textContent = 'Nova Partida';
+        btn.textContent = 'Novo Jogo';
+        btn.setAttribute('style', 'font-size: 0.8em')
         btn.addEventListener('click', deletarMsgFinal());
     }
 
